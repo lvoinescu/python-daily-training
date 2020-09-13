@@ -1,3 +1,7 @@
+# Given a matrix of characters, and a input word,
+# determine if the word can be found in the matrix,
+# by traversing the matrix in any direction (top, bottom, left, right)
+
 def seek_solution(matrix, i, j, word, position):
     if position == len(word):
         return True
