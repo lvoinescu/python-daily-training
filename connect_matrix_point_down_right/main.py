@@ -1,4 +1,3 @@
-
 # You have 2 integers n and m representing an n by m grid;
 # determine the number of ways you can get from the top-left to the bottom-right
 # of the matrix y going only right or down.
@@ -10,39 +9,31 @@
 # Right, down
 # Down, right.
 
+def from_top_left_to_bottom_right(matrix, i, j, partial_solution):
+    if i >= len(matrix) or j >= len(matrix[0]):
+        return
 
-def seek_solution(matrix, i, j, word, position):
-    if position == len(word):
-        return True
+    if i == len(matrix) - 1 and j == len(matrix[i]) - 1:
+        partial_solution.append(matrix[i][j])
+        print("Complete path: " + str(partial_solution))
+        partial_solution.pop()
 
-    print("Checking [" + str(i) + "," + str(j) + "]=" + matrix[i][j])
-    if i > 0 and matrix[i - 1][j] == word[position]:
-        return seek_solution(matrix, i - 1, j, word, position + 1)
-    if i < len(matrix) - 1 and matrix[i + 1][j] == word[position]:
-        return seek_solution(matrix, i + 1, j, word, position + 1)
-    if j > 0 and matrix[i][j - 1] == word[position]:
-        return seek_solution(matrix, i, j - 1, word, position + 1)
-    if j < len(matrix[i]) - 1 and matrix[i][j + 1] == word[position]:
-        return seek_solution(matrix, i, j + 1, word, position + 1)
-    return False
+    if i < len(matrix):
+        partial_solution.append(matrix[i][j])
+        from_top_left_to_bottom_right(matrix, i + 1, j, partial_solution)
+        partial_solution.pop()
 
-
-def word_search(matrix, word):
-    rows = len(matrix)
-    columns = len(matrix[0])
-    for i in range(rows):
-        for j in range(columns):
-            if matrix[i][j] == word[0]:
-                found = seek_solution(matrix, i, j, word, 1)
-                if found:
-                    return True
-    return False
+    if j < len(matrix[i]):
+        partial_solution.append(matrix[i][j])
+        from_top_left_to_bottom_right(matrix, i, j + 1, partial_solution)
+        partial_solution.pop()
 
 
 input_matrix = [
-    ['4', '3', '2', '1'],
-    ['B', 'S', 'M', 'E'],
-    ['s', 'T', 'E', 'G'],
-    ['M', 'O', 'R', 'A']]
-needle = 'STORAGE1234'
-print(needle + " found: " + str(word_search(input_matrix, needle)))
+    ['0', '4', '8', 'C'],
+    ['1', '5', '9', 'D'],
+    ['2', '6', 'A', 'E'],
+    ['3', '7', 'B', 'F']
+]
+
+from_top_left_to_bottom_right(input_matrix, 0, 0, [])
