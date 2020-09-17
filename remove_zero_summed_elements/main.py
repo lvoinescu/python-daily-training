@@ -31,7 +31,7 @@ def remove_consecutive_zero_sum_nodes(node):
     total_size = get_size(node)
     size = 1
     head = node
-    while size < total_size:
+    while size <= total_size:
         start = head
         previous = None
         while start is not None:
@@ -45,6 +45,7 @@ def remove_consecutive_zero_sum_nodes(node):
                         head = sum_element_node.next
                     else:
                         remove_between(previous, sum_element_node)
+                    total_size = total_size - size
                     partial_sum = 0
                 counter += 1
                 sum_element_node = sum_element_node.next
@@ -62,7 +63,50 @@ node.next.next.next.next = Node(1)
 node.next.next.next.next.next = Node(4)
 node.next.next.next.next.next.next = Node(-4)
 node = remove_consecutive_zero_sum_nodes(node)
+print("First sample", end=" ")
 while node:
-    print(node.value)
+    print(node.value, end=" ")
     node = node.next
-# 10
+print()
+
+node = Node(0)
+node.next = Node(5)
+node.next.next = Node(-3)
+node.next.next.next = Node(-3)
+node.next.next.next.next = Node(1)
+node.next.next.next.next.next = Node(4)
+node.next.next.next.next.next.next = Node(-4)
+node = remove_consecutive_zero_sum_nodes(node)
+print("Second sample:", end=" ")
+while node:
+    print(node.value, end=" ")
+    node = node.next
+print()
+
+node = Node(0)
+node.next = Node(3)
+node.next.next = Node(-3)
+node.next.next.next = Node(5)
+node.next.next.next.next = Node(1)
+node.next.next.next.next.next = Node(4)
+node.next.next.next.next.next.next = Node(-4)
+node = remove_consecutive_zero_sum_nodes(node)
+print("Third sample:", end=" ")
+while node:
+    print(node.value, end=" ")
+    node = node.next
+print()
+
+
+node = Node(1)
+node.next = Node(2)
+node.next.next = Node(3)
+node.next.next.next = Node(4)
+node.next.next.next.next = Node(5)
+node.next.next.next.next.next = Node(6)
+node.next.next.next.next.next.next = Node(-21)
+node = remove_consecutive_zero_sum_nodes(node)
+print("Fourth sample:", end=" ")
+while node:
+    print(node.value, end=" ")
+    node = node.next
