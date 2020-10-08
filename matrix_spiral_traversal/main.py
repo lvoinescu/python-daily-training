@@ -47,10 +47,10 @@ def matrix_spiral_print_naive(M):
             if corner_count % 4 == 1:
                 i_step = 1
                 j_step = 0
-            if corner_count % 4 == 2:
+            elif corner_count % 4 == 2:
                 i_step = 0
                 j_step = -1
-            if corner_count % 4 == 3:
+            elif corner_count % 4 == 3:
                 i_step = -1
                 j_step = 0
         i += i_step
