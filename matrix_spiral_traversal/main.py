@@ -44,15 +44,18 @@ def matrix_spiral_print_naive(M):
                 (i == end_i and j == end_j) or \
                 (i == end_i and j == start_j):
             corner_count += 1
-            if corner_count == 1:
-                i_step = 1
-                j_step = 0
-            elif corner_count == 2:
-                i_step = 0
-                j_step = -1
-            elif corner_count == 3:
-                i_step = -1
-                j_step = 0
+            i_step = 2 - corner_count
+            j_step = abs(corner_count - 2) - 1
+            # the above 2 lines are equivalent to the following if conditions
+            # if corner_count == 1:
+            #     i_step = 1
+            #     j_step = 0
+            # elif corner_count == 2:
+            #     i_step = 0
+            #     j_step = -1
+            # elif corner_count == 3:
+            #     i_step = -1
+            #     j_step = 0
         i += i_step
         j += j_step
 
